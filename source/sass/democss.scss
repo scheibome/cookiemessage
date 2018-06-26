@@ -1,0 +1,38 @@
+@import "vendor/normalize";
+@import "vendor/colors";
+
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1rem;
+  font-family: 'arial', sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+.btn {
+  width: auto;
+  padding: 0.8rem 1rem;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+  background-color: $color-border;
+  color: white;
+  cursor: pointer;
+  border-width: 0;
+  transition: background-color 0.2s ease 0s, text-shadow 0.2s ease 0s;
+
+  &:hover {
+    background-color: lighten($color-light, 8%);
+    color: $color-border;
+  }
+
+  &:active {
+    background-color: darken($color-light, 8%);
+  }
+}

@@ -1,0 +1,1 @@
+!function(e){"use strict";e.config({urlArgs:"1522318445244",baseUrl:"javascripts"}),document.getElementById("cookiemessage")&&e(["cookiemessage"])}(requirejs);

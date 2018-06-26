@@ -1,0 +1,27 @@
+#
+# This file is part of in2code/buildessentials and is installed via in2code's build
+# toolchain - please work with this Git repository if you want to adjust this file:
+#
+# https://bitbucket.org/in2code/in2codegmbh-continuousintegration-buildessentials
+#
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[**.{css,scss}]
+indent_style = space
+indent_size = 2
+
+[**.{html,js}]
+indent_style = tab
+
+[**.php]
+indent_style = space
+indent_size = 4
