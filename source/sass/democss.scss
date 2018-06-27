@@ -15,6 +15,20 @@ body {
   overflow-x: hidden;
 }
 
+.pageheader {
+  padding: 0.5rem;
+  color: $color-text;
+  background-color: $color-background;
+  text-align: center;
+  margin: 0 0 3rem;
+}
+
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 .btn {
   width: auto;
   padding: 0.8rem 1rem;
