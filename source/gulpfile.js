@@ -10,10 +10,11 @@ let debug = getArg('--debug');
 let autoprefixer = require('gulp-autoprefixer');
 let watch = require('gulp-watch');
 let replace = require('gulp-replace');
+let fs = require('fs');
+let escape = require('escape-html');
 
 let project = {
-	css: __dirname + '/../docs',
-	js: __dirname + '/../docs/javascripts'
+	main: __dirname + '/../docs'
 };
 
 // SCSS zu css
@@ -35,7 +36,7 @@ gulp.task('css', function() {
 			browsers: ['last 2 versions'],
 			cascade: false
 		}))
-		.pipe(gulp.dest(project.css));
+		.pipe(gulp.dest(project.main));
 });
 
 gulp.task('js', function() {
@@ -43,7 +44,22 @@ gulp.task('js', function() {
 		.pipe(plumber())
 		.pipe(gulpif(!debug, uglify()))
 		.pipe(replace('RequireVersionReplaceByCompiling', Date.now()))
-		.pipe(gulp.dest(project.js));
+		.pipe(gulp.dest(project.main));
+});
+
+gulp.task('html', function() {
+	let cookiemessageMarkup = fs.readFileSync(__dirname + '/html/cookiemessage.html', 'utf-8');
+	let cookiemessageJsMarkup = fs.readFileSync(__dirname + '/javascripts/cookiemessage.js', 'utf-8');
+	let svgmap = fs.readFileSync(__dirname + '/html/svg.html', 'utf-8');
+
+	gulp.src([__dirname + '/html/index.html'])
+		.pipe(plumber())
+		.pipe(replace('[cookiemessage]', cookiemessageMarkup))
+		.pipe(replace('[cookiemessageEscape]', escape(cookiemessageMarkup)))
+		.pipe(replace('[cookiemessageJs]', cookiemessageJsMarkup))
+		.pipe(replace('[cookiemessageJsEscape]', escape(cookiemessageJsMarkup)))
+		.pipe(replace('[svgmap]', svgmap))
+		.pipe(gulp.dest(project.main));
 });
 
 /*********************************
@@ -57,9 +73,12 @@ gulp.task('watch', ['build'], function() {
 	watch([__dirname + '/javascripts/*.js'], function() {
 		gulp.start(['js']);
 	});
+	watch([__dirname + '/html/**/**', __dirname + '/javascripts/*.js'], function() {
+		gulp.start(['html']);
+	});
 });
 
-gulp.task('build', ['css', 'js']);
+gulp.task('build', ['css', 'js', 'html']);
 
 /**
  * Get arguments from commandline
