@@ -3,9 +3,19 @@ define('cookiemessage', function() {
 
 	var cookieName = window.location.hostname;
 	var cookieMessageSwitchClassname = 'cookiemessage--loaded';
+	var bodyCookieMessageSwitchClassname = 'cookiemessageloaded';
 	var cookieLifetime = 365; // in days
 	var $cookieMessagebar = document.getElementById('cookiemessage');
 	var $cookieMessageButton = document.getElementById('cookiemessagebutton');
+
+	function setBodyBottomPadding() {
+		document.body.classList.add(bodyCookieMessageSwitchClassname);
+		document.body.setAttribute('style', 'padding-bottom: ' + $cookieMessagebar.offsetHeight + 'px;');
+	}
+
+	function removeBodyBottomPadding() {
+		document.body.removeAttribute('style');
+	}
 
 	function checkCookie(name) {
 		var value = '; ' + document.cookie;
@@ -20,6 +30,7 @@ define('cookiemessage', function() {
 		var d = new Date();
 		d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
 		document.cookie = name + '=' + value + ';path=/;expires=' + d.toGMTString();
+		removeBodyBottomPadding();
 	}
 
 	if (!checkCookie(cookieName)) {
@@ -28,5 +39,6 @@ define('cookiemessage', function() {
 			setCookie(cookieName, 'hide', cookieLifetime);
 			$cookieMessagebar.classList.remove(cookieMessageSwitchClassname);
 		});
+		setBodyBottomPadding();
 	}
 });
