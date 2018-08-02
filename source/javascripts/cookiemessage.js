@@ -7,6 +7,7 @@ Element.prototype.cookiemessage = function(settings) {
 	var cookieLifetime = settings.lifetime || 365; // in days
 	var button = settings.button || document.getElementById('cookiemessagebutton');
 	var position = settings.position || 'bottom-right';
+	var palette = settings.palette || '';
 
 	var setBodyBottomPadding = function() {
 		document.body.classList.add(bodyCookieMessageSwitchClassname);
@@ -34,7 +35,6 @@ Element.prototype.cookiemessage = function(settings) {
 	};
 
 	var setPositionClasses = function(element, position) {
-
 		switch (position) {
 			case 'bottom': {
 				element.classList.add('cookiemessage--bar');
@@ -51,10 +51,41 @@ Element.prototype.cookiemessage = function(settings) {
 				element.classList.add('cookiemessage--br');
 			}
 		}
-		console.log(element, position);
+	};
+
+	var setPaletteColors = function(element, button, palette) {
+		if ('undefined' !== typeof palette.message) {
+			if ('undefined' !== typeof palette.message.background) {
+				element.style.backgroundColor = palette.message.background;
+			}
+
+			if ('undefined' !== typeof palette.message.text) {
+				element.style.color = palette.message.text;
+			}
+		}
+
+		if ('undefined' !== typeof palette.button) {
+			if ('undefined' !== typeof palette.button.background) {
+				button.style.backgroundColor = palette.button.background;
+			}
+
+			if ('undefined' !== typeof palette.button.text) {
+				button.style.color = palette.button.text;
+			}
+		}
+	};
+
+	var errorCheck = function(button) {
+		if ('undefined' === typeof button || null === button) {
+			alert('The cookiebar button is not define! Please check your markup or your javascript settings');
+		}
 	};
 
 	if (!checkCookie(cookieName)) {
+		errorCheck(button);
+		if ('' !== palette) {
+			setPaletteColors(cookiemessagebar, button, palette);
+		}
 		setPositionClasses(cookiemessagebar, position);
 		cookiemessagebar.classList.add(cookieMessageSwitchClassname);
 		button.classList.add('cookiemessage__btn');

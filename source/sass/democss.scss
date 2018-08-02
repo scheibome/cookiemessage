@@ -116,6 +116,14 @@ h2 {
     }
   }
 
+  &__example {
+
+    &:before {
+      content: 'Example: ';
+      font-weight: bold;
+    }
+  }
+
   &__desc {
     font-style: italic;
   }
