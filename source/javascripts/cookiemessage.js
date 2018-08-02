@@ -6,6 +6,7 @@ Element.prototype.cookiemessage = function(settings) {
 	var bodyCookieMessageSwitchClassname = 'cookiemessageloaded';
 	var cookieLifetime = settings.lifetime || 365; // in days
 	var button = settings.button || document.getElementById('cookiemessagebutton');
+	var position = settings.position || 'bottom-right';
 
 	var setBodyBottomPadding = function() {
 		document.body.classList.add(bodyCookieMessageSwitchClassname);
@@ -32,8 +33,31 @@ Element.prototype.cookiemessage = function(settings) {
 		removeBodyBottomPadding();
 	};
 
+	var setPositionClasses = function(element, position) {
+
+		switch (position) {
+			case 'bottom': {
+				element.classList.add('cookiemessage--bar');
+				element.classList.add('cookiemessage--b');
+				break;
+			}
+			case 'bottom-left': {
+				element.classList.add('cookiemessage--window');
+				element.classList.add('cookiemessage--bl');
+				break;
+			}
+			default: {
+				element.classList.add('cookiemessage--window');
+				element.classList.add('cookiemessage--br');
+			}
+		}
+		console.log(element, position);
+	};
+
 	if (!checkCookie(cookieName)) {
+		setPositionClasses(cookiemessagebar, position);
 		cookiemessagebar.classList.add(cookieMessageSwitchClassname);
+		button.classList.add('cookiemessage__btn');
 		button.addEventListener('click', function() {
 			setCookie(cookieName, 'hide', cookieLifetime);
 			cookiemessagebar.classList.remove(cookieMessageSwitchClassname);

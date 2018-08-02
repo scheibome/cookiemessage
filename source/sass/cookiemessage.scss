@@ -1,17 +1,12 @@
 @import "vendor/colors";
 
 .cookiemessage {
+  $this: &;
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px;
-  text-align: center;
+  padding: 1.5rem;
   background-color: $color-background;
   color: $color-text;
-  z-index: 100;
-  border-top: 1px solid $color-border;
-  transform: translate(0, 100%);
+  transform: translate(0, 110%);
   transition: transform 0.5s ease-in;
 
   &--loaded {
@@ -22,6 +17,62 @@
     color: currentColor;
     text-decoration: underline;
     padding: 0 10px;
+  }
+
+  &--bar {
+    padding: 1rem;
+    text-align: center;
+    z-index: 100;
+  }
+
+  &--window {
+    max-width: 25rem;
+    padding: 1.5rem;
+    z-index: 100;
+  }
+
+  &--b {
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &--br {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  &--bl {
+    bottom: 1rem;
+    left: 1rem;
+  }
+
+  &__btn {
+    width: auto;
+    padding: 0.8rem 1rem;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+    background-color: $color-border;
+    color: white;
+    cursor: pointer;
+    border-width: 0;
+    transition: background-color 0.2s ease 0s, text-shadow 0.2s ease 0s;
+
+    &:hover {
+      background-color: lighten($color-light, 8%);
+      color: $color-border;
+    }
+
+    &:active {
+      background-color: darken($color-light, 8%);
+    }
+
+    .cookiemessage--window & {
+      display: block;
+      width: 100%;
+      margin: 1rem 0 0;
+    }
   }
 }
 
