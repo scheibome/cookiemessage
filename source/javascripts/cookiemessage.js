@@ -8,8 +8,9 @@ Element.prototype.cookiemessage = function(settings) {
 	var button = settings.button || document.getElementById('cookiemessagebutton');
 	var position = settings.position || 'bottom-right';
 	var palette = settings.palette || '';
+	var pushBodyIsSet = ('undefined' === typeof settings.pushbody) ? true : settings.pushbody;
 
-	var setBodyBottomPadding = function() {
+	var pushBody = function() {
 		document.body.classList.add(bodyCookieMessageSwitchClassname);
 		document.body.setAttribute('style', 'padding-bottom: ' + cookiemessagebar.offsetHeight + 'px;');
 	};
@@ -93,6 +94,8 @@ Element.prototype.cookiemessage = function(settings) {
 			setCookie(cookieName, 'hide', cookieLifetime);
 			cookiemessagebar.classList.remove(cookieMessageSwitchClassname);
 		});
-		setBodyBottomPadding();
+		if (true === pushBodyIsSet) {
+			pushBody();
+		}
 	}
 };

@@ -47,6 +47,10 @@
     left: 1rem;
   }
 
+  &--loaded {
+    transform: translate(0, 0);
+  }
+
   &__btn {
     width: auto;
     padding: 0.8rem 1rem;
@@ -60,12 +64,11 @@
     transition: background-color 0.2s ease 0s, text-shadow 0.2s ease 0s;
 
     &:hover {
-      background-color: lighten($color-light, 8%);
-      color: $color-border;
+      filter: brightness(85%);
     }
 
     &:active {
-      background-color: darken($color-light, 8%);
+      filter: brightness(85%);
     }
 
     .cookiemessage--window & {
