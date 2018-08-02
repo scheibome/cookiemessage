@@ -5,3 +5,7 @@ function resetCookie() {
 	document.cookie = cookieName + '=' + '' + ';path=/;expires=' + d.toGMTString();
 	$cookieMessagebar.classList.add(cookieMessageSwitchClassname);
 }
+
+document.getElementById('cookiemessage').cookiemessage({
+	lifetime: 1
+});

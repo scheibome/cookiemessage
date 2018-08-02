@@ -86,3 +86,37 @@ h2 {
     }
   }
 }
+
+.docu-section {
+  margin: 0 0 1rem;
+  padding: 0 0 1rem;
+  border-bottom: 1px solid currentColor;
+}
+
+.docu-settings {
+  display: block;
+
+  &__setting {
+    font-weight: bold;
+  }
+
+  &__type {
+
+    &:before {
+      content: 'Type: ';
+      font-weight: bold;
+    }
+  }
+
+  &__default {
+
+    &:before {
+      content: 'Default: ';
+      font-weight: bold;
+    }
+  }
+
+  &__desc {
+    font-style: italic;
+  }
+}
