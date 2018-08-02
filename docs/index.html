@@ -23,21 +23,13 @@
 		<h1>Cookiemessage</h1>
 	</div>
 	<div class="content">
-		<div class="calltoactionbar">
-			<a class="btn btn--cta" href="https://github.com/scheibome/cookiemessage">
-				<svg class="svgicon" width="32" height="32" xmlns:xlink="http://www.w3.org/2000/svg"><use xlink:href="#svg--github" x="0" y="0" /></svg>
-				View project on Github
-			</a>
-			<a class="btn btn--cta" href="https://github.com/scheibome/cookiemessage/archive/master.tar.gz">
-				<svg class="svgicon" width="32" height="32" xmlns:xlink="http://www.w3.org/2000/svg"><use xlink:href="#svg--zip" x="0" y="0" /></svg>
-				Download .tar.gz
-			</a>
-			<a class="btn btn--cta" href="https://github.com/scheibome/cookiemessage/archive/master.zip">
-				<svg class="svgicon" width="32" height="32" xmlns:xlink="http://www.w3.org/2000/svg"><use xlink:href="#svg--zip" x="0" y="0" /></svg>
-				Download .zip
-			</a>
-		</div>
-		<div id="resetcookiewrap" class="resetcookiewrap"><button id="resetcookie" onclick="resetCookie()" class="btn">Display Cookiemessage</button></div>
+		<h2>Position Demo</h2>
+		<div class="positionbuttons">
+			<button class="btn btn--position" onclick="setDemoPosition('bottom-left')">Bottom left</button>
+			<button class="btn btn--position" onclick="setDemoPosition('bottom')">Bottom</button>
+			<button class="btn btn--position" onclick="setDemoPosition('bottom-right')">Bottom right</button>
+        </div>
+        <div id="resetcookiewrap" class="resetcookiewrap"><button id="resetcookie" onclick="resetCookie()" class="btn">Reset cookiemessage</button></div>
 		<h2>HTML-Markup for the script</h2>
 		<p>If you use scss, you can copy the scss file from <code>source/sass/cookiemessage.scss</code></p>
 		<pre><code class="html">&lt;div id=&quot;cookiemessage&quot; class=&quot;cookiemessage&quot;&gt;
@@ -101,6 +93,21 @@
 });
 </code></pre></span>
 		</section>
+
+        <div class="calltoactionbar">
+            <a class="btn btn--cta" href="https://github.com/scheibome/cookiemessage">
+                <svg class="svgicon" width="32" height="32" xmlns:xlink="http://www.w3.org/2000/svg"><use xlink:href="#svg--github" x="0" y="0" /></svg>
+                View project on Github
+            </a>
+            <a class="btn btn--cta" href="https://github.com/scheibome/cookiemessage/archive/master.tar.gz">
+                <svg class="svgicon" width="32" height="32" xmlns:xlink="http://www.w3.org/2000/svg"><use xlink:href="#svg--zip" x="0" y="0" /></svg>
+                Download .tar.gz
+            </a>
+            <a class="btn btn--cta" href="https://github.com/scheibome/cookiemessage/archive/master.zip">
+                <svg class="svgicon" width="32" height="32" xmlns:xlink="http://www.w3.org/2000/svg"><use xlink:href="#svg--zip" x="0" y="0" /></svg>
+                Download .zip
+            </a>
+        </div>
 	</div>
 <div id="cookiemessage" class="cookiemessage">
 	We use cookies, just to track visits to our website, we store no personal details. <a class="cookiemessage__link" href="#" target="_blank">read more</a> <button id="cookiemessagebutton">Accept</button>

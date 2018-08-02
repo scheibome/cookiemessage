@@ -1,3 +1,5 @@
+var messageElement = document.getElementById('cookiemessage');
+
 function resetCookie() {
 	'use strict';
 	var d = new Date();
@@ -6,6 +8,16 @@ function resetCookie() {
 	window.location.reload(true);
 }
 
-document.getElementById('cookiemessage').cookiemessage({
+function setDemoPosition(setPosition) {
+	'use strict';
+	messageElement.removeAttribute('class');
+	messageElement.classList.add('cookiemessage');
+	messageElement.cookiemessage({
+		lifetime: 1,
+		position: setPosition
+	});
+}
+
+messageElement.cookiemessage({
 	lifetime: 1
 });
