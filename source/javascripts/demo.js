@@ -23,5 +23,5 @@ function setDemoPosition(setPosition) {
 
 messageElement.cookiemessage({
 	lifetime: 1,
-	pushbody: true
+	position: 'top'
 });

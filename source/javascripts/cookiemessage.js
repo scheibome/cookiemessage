@@ -11,7 +11,8 @@ Element.prototype.cookiemessage = function(settings) {
 	var pushBodyIsSet = ('undefined' === typeof settings.pushbody) ? false : settings.pushbody;
 
 	/**
-	 * Adds the push class to body and adds height from the element as inline style
+	 * Adds the push class to body, adds height from the element as inline style
+	 * and save the original padding as data attribute
 	 *
 	 * @param {String} position
 	 */
@@ -19,18 +20,18 @@ Element.prototype.cookiemessage = function(settings) {
 		document.body.classList.add(bodyCookieMessageSwitchClassname);
 		var pushDirection;
 
-		if(position === 'top' || position === 'top-left' || position === 'top-right') {
-
-			pushDirection = 'padding-top: ';
+		if ('top' === position || 'top-left' === position || 'top-right' === position) {
+			pushDirection = 'padding-top';
 		} else {
-			pushDirection = 'padding-bottom: ';
+			pushDirection = 'padding-bottom';
 		}
 
-		console.log(window.getComputedStyle(document.body, null).getPropertyValue('padding-top'));
-		console.log(window.getComputedStyle(document.body, null).getPropertyValue('padding-bottom'));
+		var originalPadding = window.getComputedStyle(document.body, null).getPropertyValue(pushDirection);
+		originalPadding = parseInt(originalPadding.split('px')[0]);
+		document.body.setAttribute('data-cookiemessagepadding', originalPadding);
 
 		setTimeout(function() {
-			document.body.setAttribute('style', pushDirection + cookiemessagebar.offsetHeight + 'px;');
+			document.body.setAttribute('style', pushDirection + ': ' + (originalPadding + cookiemessagebar.offsetHeight) + 'px;');
 		}, 500);
 	};
 
@@ -63,7 +64,9 @@ Element.prototype.cookiemessage = function(settings) {
 	 * @param {String} value
 	 * @param {Number} days
 	 */
-	var setCookie = function(name, value, days) {
+	var setCookie = function(name, value, days, position) {
+		console.log(position);
+		// element.style.width = null;
 		var d = new Date();
 		d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
 		document.cookie = name + '=' + value + ';path=/;expires=' + d.toGMTString();
@@ -169,7 +172,7 @@ Element.prototype.cookiemessage = function(settings) {
 		}, 500);
 		button.classList.add('cookiemessage__btn');
 		button.addEventListener('click', function() {
-			setCookie(cookieName, 'hide', cookieLifetime);
+			setCookie(cookieName, 'hide', cookieLifetime, position);
 			cookiemessagebar.classList.remove(cookieMessageSwitchClassname);
 		});
 		if (true === pushBodyIsSet) {
