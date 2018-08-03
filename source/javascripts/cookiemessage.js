@@ -10,6 +10,11 @@ Element.prototype.cookiemessage = function(settings) {
 	var palette = settings.palette || '';
 	var pushBodyIsSet = ('undefined' === typeof settings.pushbody) ? false : settings.pushbody;
 
+	/**
+	 * Adds the push class to body and adds height from the element as inline style
+	 *
+	 * @param {String} position
+	 */
 	var pushBody = function(position) {
 		document.body.classList.add(bodyCookieMessageSwitchClassname);
 		var pushDirection;
@@ -25,10 +30,19 @@ Element.prototype.cookiemessage = function(settings) {
 		}, 500);
 	};
 
-	var removeBodyBottomPadding = function() {
+	/**
+	 * Remove the padding from the pushed option
+	 */
+	var removeBodyPadding = function() {
 		document.body.removeAttribute('style');
 	};
 
+	/**
+	 * Checks if the cookie isset
+	 *
+	 * @param {String} name
+	 * @returns {*}
+	 */
 	var checkCookie = function(name) {
 		var value = '; ' + document.cookie;
 		var parts = value.split('; ' + name + '=');
@@ -38,13 +52,26 @@ Element.prototype.cookiemessage = function(settings) {
 		return false;
 	};
 
+	/**
+	 * Set the cookie and remove the padding from the body
+	 *
+	 * @param {String} name
+	 * @param {String} value
+	 * @param {Number} days
+	 */
 	var setCookie = function(name, value, days) {
 		var d = new Date();
 		d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
 		document.cookie = name + '=' + value + ';path=/;expires=' + d.toGMTString();
-		removeBodyBottomPadding();
+		removeBodyPadding();
 	};
 
+	/**
+	 * Set the classes for the positioning
+	 *
+	 * @param {Object} element
+	 * @param {String} position
+	 */
 	var setPositionClasses = function(element, position) {
 		switch (position) {
 			case 'bottom': {
@@ -85,6 +112,13 @@ Element.prototype.cookiemessage = function(settings) {
 		}
 	};
 
+	/**
+	 * Sets the passed styles for the elements as inlinestyles
+	 *
+	 * @param {Object} element
+	 * @param {Object} button
+	 * @param {Object} palette
+	 */
 	var setPaletteColors = function(element, button, palette) {
 		if ('undefined' !== typeof palette.message) {
 			if ('undefined' !== typeof palette.message.background) {
@@ -107,6 +141,11 @@ Element.prototype.cookiemessage = function(settings) {
 		}
 	};
 
+	/**
+	 * checks if the button element is set, otherwise an error message is displayed
+	 *
+	 * @param {Object} button
+	 */
 	var errorCheck = function(button) {
 		if ('undefined' === typeof button || null === button) {
 			var message = 'The cookiebar button is not defined! Please check your markup or your javascript settings';
