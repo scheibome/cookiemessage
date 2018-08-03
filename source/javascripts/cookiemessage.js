@@ -25,6 +25,9 @@ Element.prototype.cookiemessage = function(settings) {
 			pushDirection = 'padding-bottom: ';
 		}
 
+		console.log(window.getComputedStyle(document.body, null).getPropertyValue('padding-top'));
+		console.log(window.getComputedStyle(document.body, null).getPropertyValue('padding-bottom'));
+
 		setTimeout(function() {
 			document.body.setAttribute('style', pushDirection + cookiemessagebar.offsetHeight + 'px;');
 		}, 500);
