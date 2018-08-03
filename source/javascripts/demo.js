@@ -1,4 +1,5 @@
 var messageElement = document.getElementById('cookiemessage');
+var pushbodybox = document.getElementById('pushbodybox');
 
 function resetCookie() {
 	'use strict';
@@ -10,11 +11,13 @@ function resetCookie() {
 
 function setDemoPosition(setPosition) {
 	'use strict';
+	document.body.setAttribute('style', 'padding-top: 0; padding-bottom: 0;');
 	messageElement.removeAttribute('class');
 	messageElement.classList.add('cookiemessage');
 	messageElement.cookiemessage({
 		lifetime: 1,
-		position: setPosition
+		position: setPosition,
+		pushbody: pushbodybox.checked
 	});
 }
 

@@ -24,12 +24,21 @@
 	</div>
 	<div class="content">
 		<h2>Position Demo</h2>
-		<div class="positionbuttons">
-			<button class="btn btn--position" onclick="setDemoPosition('bottom-left')">Bottom left</button>
-			<button class="btn btn--position" onclick="setDemoPosition('bottom')">Bottom</button>
-			<button class="btn btn--position" onclick="setDemoPosition('bottom-right')">Bottom right</button>
-        </div>
-        <div id="resetcookiewrap" class="resetcookiewrap"><button id="resetcookie" onclick="resetCookie()" class="btn">Reset cookiemessage</button></div>
+		<div class="positionbuttonswrap">
+			<div class="positionbuttons">
+				<button class="btn btn--position" onclick="setDemoPosition('top-left')">Top left</button>
+				<button class="btn btn--position" onclick="setDemoPosition('top')">Top</button>
+				<button class="btn btn--position" onclick="setDemoPosition('top-right')">Top right</button>
+			</div>
+			<div class="positionbuttons">
+				<button class="btn btn--position" onclick="setDemoPosition('bottom-left')">Bottom left</button>
+				<button class="btn btn--position" onclick="setDemoPosition('bottom')">Bottom</button>
+				<button class="btn btn--position" onclick="setDemoPosition('bottom-right')">Bottom right</button>
+			</div>
+			<input type="checkbox" id="pushbodybox">
+			<label for="pushbodybox">enable pushbody</label>
+		</div>
+		<div id="resetcookiewrap" class="resetcookiewrap"><button id="resetcookie" onclick="resetCookie()" class="btn">Reset cookiemessage</button></div>
 		<h2>HTML-Markup for the script</h2>
 		<p>If you use scss, you can copy the scss file from <code>source/sass/cookiemessage.scss</code></p>
 		<pre><code class="html">&lt;div id=&quot;cookiemessage&quot; class=&quot;cookiemessage&quot;&gt;
@@ -59,7 +68,7 @@
 		</section>
 		<section class="docu-section">
 			<span class="docu-settings docu-settings__setting">position</span>
-			<span class="docu-settings docu-settings__desc">Set the position of the message. You can also use 'bottom-left' or 'bottom'.</span>
+			<span class="docu-settings docu-settings__desc">Set the position of the message. You can also use 'top-left', 'top', 'top-right', 'bottom-left', 'bottom' or 'bottom-right'.</span>
 			<span class="docu-settings docu-settings__type">string</span>
 			<span class="docu-settings docu-settings__default">bottom-right</span>
 			<span class="docu-settings docu-settings__example"><pre><code class="js">document.getElementById('cookiemessage').cookiemessage({
@@ -87,27 +96,26 @@
 			<span class="docu-settings docu-settings__setting">pushbody</span>
 			<span class="docu-settings docu-settings__desc">Adds a padding to the body with the height of the message so that the message does not cover the content of the web page.</span>
 			<span class="docu-settings docu-settings__type">boolean</span>
-			<span class="docu-settings docu-settings__default">true</span>
+			<span class="docu-settings docu-settings__default">false</span>
 			<span class="docu-settings docu-settings__example"><pre><code class="js">document.getElementById('cookiemessage').cookiemessage({
-	pushbody: true
+	pushbody: false
 });
 </code></pre></span>
 		</section>
-
-        <div class="calltoactionbar">
-            <a class="btn btn--cta" href="https://github.com/scheibome/cookiemessage">
-                <svg class="svgicon" width="32" height="32" xmlns:xlink="http://www.w3.org/2000/svg"><use xlink:href="#svg--github" x="0" y="0" /></svg>
-                View project on Github
-            </a>
-            <a class="btn btn--cta" href="https://github.com/scheibome/cookiemessage/archive/master.tar.gz">
-                <svg class="svgicon" width="32" height="32" xmlns:xlink="http://www.w3.org/2000/svg"><use xlink:href="#svg--zip" x="0" y="0" /></svg>
-                Download .tar.gz
-            </a>
-            <a class="btn btn--cta" href="https://github.com/scheibome/cookiemessage/archive/master.zip">
-                <svg class="svgicon" width="32" height="32" xmlns:xlink="http://www.w3.org/2000/svg"><use xlink:href="#svg--zip" x="0" y="0" /></svg>
-                Download .zip
-            </a>
-        </div>
+		<div class="calltoactionbar">
+			<a class="btn btn--cta" href="https://github.com/scheibome/cookiemessage">
+				<svg class="svgicon" width="32" height="32" xmlns:xlink="http://www.w3.org/2000/svg"><use xlink:href="#svg--github" x="0" y="0" /></svg>
+				View project on Github
+			</a>
+			<a class="btn btn--cta" href="https://github.com/scheibome/cookiemessage/archive/master.tar.gz">
+				<svg class="svgicon" width="32" height="32" xmlns:xlink="http://www.w3.org/2000/svg"><use xlink:href="#svg--zip" x="0" y="0" /></svg>
+				Download .tar.gz
+			</a>
+			<a class="btn btn--cta" href="https://github.com/scheibome/cookiemessage/archive/master.zip">
+				<svg class="svgicon" width="32" height="32" xmlns:xlink="http://www.w3.org/2000/svg"><use xlink:href="#svg--zip" x="0" y="0" /></svg>
+				Download .zip
+			</a>
+		</div>
 	</div>
 <div id="cookiemessage" class="cookiemessage">
 	We use cookies, just to track visits to our website, we store no personal details. <a class="cookiemessage__link" href="#" target="_blank">read more</a> <button id="cookiemessagebutton">Accept</button>
@@ -117,5 +125,20 @@
 	<script type="text/javascript" src="demo.js" ></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
+<!-- Matomo -->
+<script type="text/javascript">
+	var _paq = _paq || [];
+	/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+	_paq.push(['trackPageView']);
+	_paq.push(['enableLinkTracking']);
+	(function() {
+		var u="//statistik.scheibitz.com/";
+		_paq.push(['setTrackerUrl', u+'piwik.php']);
+		_paq.push(['setSiteId', '14']);
+		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+		g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+	})();
+</script>
+<!-- End Matomo Code -->
 </body>
 </html>
