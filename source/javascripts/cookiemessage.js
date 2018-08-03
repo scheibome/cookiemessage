@@ -20,6 +20,7 @@ Element.prototype.cookiemessage = function(settings) {
 		var pushDirection;
 
 		if(position === 'top' || position === 'top-left' || position === 'top-right') {
+
 			pushDirection = 'padding-top: ';
 		} else {
 			pushDirection = 'padding-bottom: ';
